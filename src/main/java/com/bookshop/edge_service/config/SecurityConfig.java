@@ -59,13 +59,9 @@ public class SecurityConfig {
 
 		return http
 				.authorizeExchange(exchange -> exchange
-//						.pathMatchers("/", "/*.css", "/*.js", "/favicon.ico").permitAll()
-//                        .pathMatchers(HttpMethod.GET, "/payments/success", "/payment/cancel").permitAll()
-//					 	.pathMatchers(HttpMethod.GET, "/books/**").permitAll()
-//						.anyExchange().authenticated()
-                                .pathMatchers(HttpMethod.GET, "/user").authenticated()
-                                .pathMatchers("/chats/**").permitAll()
-                                .anyExchange().permitAll()
+                        .pathMatchers(HttpMethod.GET, "/user").authenticated()
+						.pathMatchers(HttpMethod.GET, "/**").permitAll()
+						.anyExchange().authenticated()
 				)
 				.exceptionHandling(exceptionHandling -> exceptionHandling
 						.authenticationEntryPoint(new HttpStatusServerEntryPoint(HttpStatus.UNAUTHORIZED)))
